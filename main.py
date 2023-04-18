@@ -127,7 +127,7 @@ def read_root():
     # df= etl_plataformas_csv()
     return {"message": "Iniciando: Sistema de Recomendación de Plataformas"}
 
-# consulta 1
+# consulta 1 •	Película (sólo película, no serie, ni documentales, etc) con mayor duración según año, plataforma y tipo de duración. La función debe llamarse get_max_duration(year, platform, duration_type) y debe devolver sólo el string del nombre de la película.
 @app.get('/get_max_duration/{anio}/{plataforma}/{dtype}')
 def get_max_duration(anio: int, plataforma: str, dtype: str):
     type = "movie"
@@ -148,8 +148,7 @@ def get_max_duration(anio: int, plataforma: str, dtype: str):
         return {'pelicula': respuesta}
     return respuesta
 
-
-#consulta 2
+#consulta 2 •	Cantidad de películas (sólo películas, no series, ni documentales, etc) según plataforma, con un puntaje mayor a XX en determinado año. La función debe llamarse get_score_count(platform, scored, year) y debe devolver un int, con el total de películas que cumplen lo solicitado.
 @app.get('/get_score_count/{plataforma}/{scored}/{anio}')
 def get_score_count(plataforma: str, scored: float, anio: int):
     plataforma = plataforma.lower()
@@ -174,7 +173,7 @@ def get_score_count(plataforma: str, scored: float, anio: int):
     
     return respuesta
 
-#consulta 3
+#consulta 3 •	Cantidad de películas (sólo películas, no series, ni documentales, etc) según plataforma. La función debe llamarse get_count_platform(platform) y debe devolver un int, con el número total de películas de esa plataforma. Las plataformas deben llamarse amazon, netflix, hulu, disney.
 @app.get('/get_count_platform/{plataforma}')
 def get_count_platform(plataforma: str):
     #print("************************************************  inicia consulta 3")
@@ -188,7 +187,7 @@ def get_count_platform(plataforma: str):
     #print("**************************************cantidad de peliculas ********** ", respuesta)
     return {'plataforma': plataforma, 'peliculas': respuesta}
 
-#consulta 4
+#consulta 4 •	Actor que más se repite según plataforma y año. La función debe llamarse get_actor(platform, year) y debe devolver sólo el string con el nombre del actor que más se repite según la plataforma y el año dado.
 @app.get('/get_actor/{plataforma}/{anio}')
 def get_actor(plataforma: str, anio: int):
     
@@ -213,9 +212,7 @@ def get_actor(plataforma: str, anio: int):
         'apariciones': int(actor_counts.loc[respuesta])
     }
 
-
-
-# consulta 5
+# consulta 5 •	La cantidad de contenidos/productos (todo lo disponible en streaming) que se publicó por país y año. La función debe llamarse prod_per_county(tipo,pais,anio) deberia devolver el tipo de contenido (pelicula,serie,documental) por pais y año en un diccionario con las variables llamadas 'pais' (nombre del pais), 'anio' (año), 'pelicula' (tipo de contenido).
 @app.get('/prod_per_county/{tipo}/{pais}/{anio}')
 def prod_per_county(tipo: str, pais: str, anio: int):
     pais = pais.lower()
@@ -230,8 +227,7 @@ def prod_per_county(tipo: str, pais: str, anio: int):
     #print("************************************************ fin consulta 5 firo ", respuesta) 
     return {'pais': pais, 'anio': anio, 'peliculas': respuesta}
 
-
-#consulta 6
+#consulta 6 •	La cantidad total de contenidos/productos (todo lo disponible en streaming, series, documentales, peliculas, etc) según el rating de audiencia dado (para que publico fue clasificada la pelicula). La función debe llamarse get_contents(rating) y debe devolver el numero total de contenido con ese rating de audiencias.
 @app.get('/get_contents/{rating}')
 def get_contents(rating: str):
     rating=rating.lower()
