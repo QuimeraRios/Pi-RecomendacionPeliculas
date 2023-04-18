@@ -17,7 +17,7 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ejemplos de uso
+# Ejemplos de uso
 Se requiere tener los archivos de las plataformas y 8 archivos.csv donde están los raitings de calificación de los usuarios.
 
 El sistema de recomendación utiliza los siguientes archivos de carga de las plataformas:
