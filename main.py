@@ -121,8 +121,6 @@ def etl_plataformas_csv():
     #print(df.head(3))
     return df
 
-
-
 @app.get("/")
 def read_root():
     # df= etl_plataformas_csv()
@@ -241,27 +239,6 @@ def get_contents(rating: str):
     respuesta = filtered_df[['title', 'description', 'type']].to_dict('records')
 
     return {'rating': rating, 'contenido': respuesta}
-
-
-
-
-
-
-
-
-
-#consulta 7
-@app.get('/get_recomendation/{title}')
-def get_recomendation(title):
-    df = pd.read_csv('E:/DataScience/Labs/PI-1/fastapi/archivo_final.csv')
-    modelo_df= pd.read_csv('E:/DataScience/Labs/PI-1/fastapi/archivo_final.csv')
-    
-    
-    return {'recomendacion':respuesta}
-
-    
-    
-   
 
 def main():
     if datos_cargados ==0:
