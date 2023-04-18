@@ -102,10 +102,10 @@ def etl_plataformas_csv():
     #ratings_df = ratings_df.rename(columns={'timestamp': 'date_added'})
     
     # se deja como dataframe final df en df uniendo los dos de peliculas y ratings por el id que corresponde a moviedId
-    # Fusionar los DataFrames por la columna 'movieId'
+    # Fusionar los DataFrames por la columna 'id'
     #print("*******************************************antes del merge total_df ***** ", len(total_df))
     df = pd.merge(peliculas_df, total_df, on='id')
-    #merged_df.to_csv('archivo_final.csv', index=False)
+
     #print("*******************************************despues merge df***** ", len(df))
     # calculo de score en rating por id obteniendo el promedio por titulo de la pelicula   
    
