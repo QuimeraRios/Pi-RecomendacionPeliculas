@@ -1,6 +1,7 @@
 # en la linea de comandos se ejecuta desde esta ruta local: cd.. E:  cd DataScience\Labs\PI-1\fastapi
 #E:/DataScience/Labs/PI-1/fastapi
 # inicializar en cdm con uvicorn main:app --reload
+
 import pandas as pd
 import uvicorn
 import json
