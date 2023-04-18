@@ -1,9 +1,10 @@
 # Pi-RecomendacionPeliculas
+
+# Description
 Trabajo individual situándose en el rol de un MLOps Engineer para realizar un modelo de recomendación de películas
 
-README
-
-Librerias
+# Instrucciones de instalación
+Requiere las siguientes librerias para su uso
 
 import pandas as pd
 import uvicorn
@@ -16,9 +17,42 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# ejemplos de uso
+Se requiere tener los archivos de las plataformas y 8 archivos.csv donde están los raitings de calificación de los usuarios.
 
 El sistema de recomendación utiliza los siguientes archivos de carga de las plataformas:
 Netflix, Amazon, Disney y Hulu. 
+Se debe ingresar a la dirección local del API http://127.0.0.1:8000/ para probarlo localmente.
+
+Se tienen 6 consultas para consumir en la aplicación, que son:
+•	Película (sólo película, no serie, ni documentales, etc) con mayor duración según año, plataforma y tipo de duración. La función debe llamarse get_max_duration(year, platform, duration_type) y debe devolver sólo el string del nombre de la película:
+http://127.0.0.1:8000/get_max_duration/2006/Netflix/min
+![image](https://user-images.githubusercontent.com/115653073/232666238-88b784f5-335e-4fd6-b820-965ec0aafe30.png)
+
+En este video se explica el paso a paso para llegar al resultado: https://youtu.be/opdjhz7kN1c 
+
+•	Cantidad de películas (sólo películas, no series, ni documentales, etc) según plataforma, con un puntaje mayor a XX en determinado año. La función debe llamarse get_score_count(platform, scored, year) y debe devolver un int, con el total de películas que cumplen lo solicitado.
+127.0.0.1:8000/get_score_count/amazon/3.0/2010
+![image](https://user-images.githubusercontent.com/115653073/232666298-4c2fdc01-dd9d-4cd9-a9fd-f81b4f231a6a.png)
+
+•	Cantidad de películas (sólo películas, no series, ni documentales, etc) según plataforma. La función debe llamarse get_count_platform(platform) y debe devolver un int, con el número total de películas de esa plataforma. Las plataformas deben llamarse amazon, netflix, hulu, disney.
+127.0.0.1:8000/get_count_platform/disney
+![image](https://user-images.githubusercontent.com/115653073/232666342-d71e4210-067f-4ec0-9da5-2fd88257e74b.png)
+
+•	Actor que más se repite según plataforma y año. La función debe llamarse get_actor(platform, year) y debe devolver sólo el string con el nombre del actor que más se repite según la plataforma y el año dado.
+127.0.0.1:8000/get_actor/Netflix/2010
+![image](https://user-images.githubusercontent.com/115653073/232667258-8a9ca04c-aa12-4e19-b1c0-eb7306d2f8fe.png)
+
+•	La cantidad de contenidos/productos (todo lo disponible en streaming) que se publicó por país y año. La función debe llamarse prod_per_county(tipo,pais,anio) deberia devolver el tipo de contenido (pelicula,serie,documental) por pais y año en un diccionario con las variables llamadas 'pais' (nombre del pais), 'anio' (año), 'pelicula' (tipo de contenido).
+127.0.0.1:8000/prod_per_county/Movie/United States/2010
+![image](https://user-images.githubusercontent.com/115653073/232667303-ecc2f260-937c-49d2-ab74-d97a8ede6338.png)
+
+•	La cantidad total de contenidos/productos (todo lo disponible en streaming, series, documentales, peliculas, etc) según el rating de audiencia dado (para que publico fue clasificada la pelicula). La función debe llamarse get_contents(rating) y debe devolver el numero total de contenido con ese rating de audiencias.
+127.0.0.1:8000/get_contents/tv-ma
+![image](https://user-images.githubusercontent.com/115653073/232667353-fbf8f9a2-69cf-47f9-b10c-c7b431dcf720.png)
+
+# Documentación
+
 La concatenación de estos archivos se puede realizar pues todos poseen las mismas columnas y tipos de datos en estas columnas, asi:
  #   Column         Dtype 
 0   show_id        object: posee un id tipo string consecutivo anteponiendo "s", ejemplo: s1,s2
@@ -44,6 +78,8 @@ La concatenación de estos archivos se puede realizar pues todos poseen las mism
  2   timestamp  object : esta columna posee las fechas en formato UNIX
  3   movieId    object : en esta columna esta la identificación de la película unida al nombre de la plataforma, ejemplo: as1, as2, son de Amazon.
  
+ ## ETL
+ 
  Se procede a realizar un ETL inicial que cumple las siguientes caracteristicas:
  
  En el archivo donde esta la información de las peliculas con su plataforma:
@@ -61,6 +97,7 @@ La concatenación de estos archivos se puede realizar pues todos poseen las mism
  2. la columna movieId se renombra a id, esto con el fin de poder hacer un merged entre el resultado de la unión de los archivos de las plataformas y ratings.
  3. se calcula el score de cada pelicula en una columna nueva con el fin de poder hacer consultas sobre este campo.
  
+ ## merge de archivos
  Al unir todos los archivos se posee un archivo unificado asi:
  Data columns (total 20 columns):
  #   Column         Dtype 		Descripción 
@@ -90,12 +127,12 @@ La concatenación de estos archivos se puede realizar pues todos poseen las mism
  duration_int se cambia a tipo int64
  los datos que estan en audiencia hay muchos que pertenecen a duration por lo cual se pasa a duration y se vuelve a organizar los datos.
  
- Uso del sistema
+ ## Uso del sistema
  Para encontrar el sistema de recomendación se prueba en un browser tipo google crhome o firebox.
  Se ingresa a la dirección 
  
  
- EDA
+ ## EDA
 Como Data Engineer, segui los siguientes pasos para realizar un EDA (Exploratory Data Analysis):
 
 1. Para entender la naturaleza de los datos, investigue en el dataframe:
@@ -131,13 +168,14 @@ Utilice herramientas de matplotlib y seaborn.
  Me aseguré de registrar todos los hallazgos y conclusiones para facilitar el análisis posterior y permitir
  una mejor comprensión de los datos.
  
+ ## EDA
 Luego del EDA, siguen los pasos:
 Se prepara en local
 Se crea la función para consumir el output como otra función de la API https://youtu.be/opdjhz7kN1c video de APIS.
 Funcionando en local, se procedió a buscar donde realizar el deployment, con varias alternativas usando Render.
 Una vez deployado, se realizan las consultas pedidas desde el deployment.
 
-Machine learning:
+## Machine learning:
 Se decide entrenar nuestro modelo de machine learning para armar un sistema de recomendación de películas utilizando las herramientas de ML.	
 Se utiliza un Filtro basado en contenido: esta técnica se basa en características de las películas, como género, actores, director, etc. y recomienda películas similares basadas en las preferencias de los usuarios.
 1. Carga de datos:
