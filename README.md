@@ -53,6 +53,7 @@ En este video se explica el paso a paso para llegar al resultado: https://youtu.
 ![image](https://user-images.githubusercontent.com/115653073/232667353-fbf8f9a2-69cf-47f9-b10c-c7b431dcf720.png)
 
 # Documentación
+Ver video informativo: https://youtu.be/UfaGx34jl-c 
 
 La concatenación de estos archivos se puede realizar pues todos poseen las mismas columnas y tipos de datos en estas columnas, asi:
  #   Column         Dtype 
