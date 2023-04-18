@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from statsmodels.graphics.gofplots import qqplot
 from fastapi.templating import Jinja2Templates
+from main import app
 
 # Crear una instancia del motor de plantillas Jinja2
 templates = Jinja2Templates(directory="templates")
