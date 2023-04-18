@@ -10,7 +10,6 @@ import os
 from datetime import datetime
 import numpy as np
 from fastapi.templating import Jinja2Templates
-from main import app
 
 # Crear una instancia del motor de plantillas Jinja2
 templates = Jinja2Templates(directory="templates")
