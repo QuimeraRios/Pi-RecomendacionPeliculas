@@ -132,6 +132,8 @@ La concatenación de estos archivos se puede realizar pues todos poseen las mism
  Para encontrar el sistema de recomendación se prueba en un browser tipo google crhome o firebox.
  Se ingresa a la dirección 
  
+ # Deployment
+ Se crea cuenta en Render y Google cloud, se sincroniza con Github y se hacen los pasos en Render: Readme, requirements, commit, etc
  
  ## EDA
 Como Data Engineer, segui los siguientes pasos para realizar un EDA (Exploratory Data Analysis):
