@@ -9,10 +9,6 @@ from fastapi import FastAPI
 import os
 from datetime import datetime
 import numpy as np
-import scipy.stats as stats
-import matplotlib.pyplot as plt
-import seaborn as sns
-from statsmodels.graphics.gofplots import qqplot
 from fastapi.templating import Jinja2Templates
 from main import app
 
