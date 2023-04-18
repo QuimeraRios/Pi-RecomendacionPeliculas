@@ -22,6 +22,9 @@ templates = Jinja2Templates(directory="templates")
 ## Instancio FastApi
 app = FastAPI()
 
+# para trabajar el entorno virtual
+gunicorn main:app
+
 datos_cargados =0
 #final_df=pd.DataFrame()
 
