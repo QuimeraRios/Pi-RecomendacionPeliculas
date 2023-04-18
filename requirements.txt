@@ -1,6 +1,5 @@
 pandas
 fastapi
-jsonable_encoder
 pydantic
 typing
 datetime
