@@ -13,6 +13,7 @@ decorator
 executing
 fastapi
 fonttools
+gunicorn
 h11
 idna
 importlib-resources
